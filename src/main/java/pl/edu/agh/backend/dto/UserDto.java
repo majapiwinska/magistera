@@ -1,32 +1,44 @@
 package pl.edu.agh.backend.dto;
 
+import pl.edu.agh.backend.struct.Project;
+import pl.edu.agh.backend.struct.Role;
+import pl.edu.agh.backend.struct.Task;
 import pl.edu.agh.backend.struct.enums.UserRole;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class UserDto {
 
-   private Integer id;
+   private Long id;
    private String firstName;
    private String lastName;
-   private String nick;
+   private String username;
    private String email;
-   private UserRole role;
+   private int active;
+   private String password;
+   private List<Task> usersTasks = new LinkedList<>();
+
+   private Set<Role> roles = new HashSet<>();
+   private Set<Project> userProjects = new HashSet<>();
 
    public UserDto() {
    }
 
-   public UserDto(String firstName, String lastName, String nick, String email, UserRole role) {
+   public UserDto(String firstName, String lastName, String username, String email) {
       this.firstName = firstName;
       this.lastName = lastName;
-      this.nick = nick;
+      this.username = username;
       this.email = email;
-      this.role = role;
    }
 
-   public Integer getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId(Integer id) {
+   public void setId(Long id) {
       this.id = id;
    }
 
@@ -46,12 +58,12 @@ public class UserDto {
       this.lastName = lastName;
    }
 
-   public String getNick() {
-      return nick;
+   public String getUsername() {
+      return username;
    }
 
-   public void setNick(String nick) {
-      this.nick = nick;
+   public void setUsername(String username) {
+      this.username = username;
    }
 
    public String getEmail() {
@@ -62,11 +74,43 @@ public class UserDto {
       this.email = email;
    }
 
-   public UserRole getRole() {
-      return role;
+   public List<Task> getUsersTasks() {
+      return usersTasks;
    }
 
-   public void setRole(UserRole role) {
-      this.role = role;
+   public void setUsersTasks(List<Task> usersTasks) {
+      this.usersTasks = usersTasks;
+   }
+
+   public Set<Project> getUserProjects() {
+      return userProjects;
+   }
+
+   public void setUserProjects(Set<Project> userProjects) {
+      this.userProjects = userProjects;
+   }
+
+   public Set<Role> getRoles() {
+      return roles;
+   }
+
+   public void setRoles(Set<Role> roles) {
+      this.roles = roles;
+   }
+
+   public int getActive() {
+      return active;
+   }
+
+   public void setActive(int active) {
+      this.active = active;
+   }
+
+   public String getPassword() {
+      return password;
+   }
+
+   public void setPassword(String password) {
+      this.password = password;
    }
 }
