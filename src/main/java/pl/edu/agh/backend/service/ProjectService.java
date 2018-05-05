@@ -27,15 +27,15 @@ public class ProjectService {
       ProjectDto dto = new ProjectDto();
       List<ProjectDto> projectDtos = new LinkedList<>();
       projects.forEach(project -> {
-         projectDtos.add(projectTransformer.transformToDto(project, dto));
+         projectDtos.add(projectTransformer.transformToDto(project));
       });
       return projectDtos;
    }
 
    public ProjectDto save(ProjectDto projectDto){
       Project project = new Project();
-      project = projectRepository.save(projectTransformer.transformFromDto(project,projectDto));
-      return projectTransformer.transformToDto(project, projectDto);
+      project = projectRepository.save(projectTransformer.transformFromDto(projectDto));
+      return projectTransformer.transformToDto(project);
    }
 
 }

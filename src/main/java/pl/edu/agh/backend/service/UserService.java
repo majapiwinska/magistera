@@ -30,13 +30,13 @@ public class UserService{
 
    public UserDto findByUsername(String username) {
       UserDto dto = new UserDto();
-      return userTransformer.transformToDto(userRepository.findOneByUsername(username), dto);
+      return userTransformer.transformToDto(userRepository.findOneByUsername(username));
    }
 
    public List<UserDto> getAllUsers() {
       UserDto dto = new UserDto();
       List<UserDto> userDtoList = new LinkedList<>();
-      userRepository.findAll().forEach(entity -> userDtoList.add(userTransformer.transformToDto(entity, dto)));
+      userRepository.findAll().forEach(entity -> userDtoList.add(userTransformer.transformToDto(entity)));
       System.out.println(userRepository.findAll().toString());
       return userDtoList;
    }
@@ -45,15 +45,15 @@ public class UserService{
       User user = this.userRepository.findOneByUsername(loginUser.getUsername());
       UserDto dto = new UserDto();
       if(user != null){
-       dto = userTransformer.transformToDto(user,dto);
+       dto = userTransformer.transformToDto(user);
       }
       return dto;
    }
 
    public UserDto save(UserDto dto) {
       User user = new User();
-      user = userTransformer.tranformFromDto(dto, user);
-      return userTransformer.transformToDto(this.userRepository.save(user), dto);
+      user = userTransformer.tranformFromDto(dto);
+      return userTransformer.transformToDto(this.userRepository.save(user));
 
    }
 }

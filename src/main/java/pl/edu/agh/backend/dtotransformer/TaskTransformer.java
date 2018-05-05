@@ -7,18 +7,18 @@ import pl.edu.agh.backend.dto.TaskDto;
 import pl.edu.agh.backend.struct.Task;
 
 @Service
-public class TaskTransformer{
+public class TaskTransformer {
 
    @Autowired
    ModelMapper modelMapper;
 
-   public Task transformFromDto(Task entity, TaskDto dto){
-    entity = modelMapper.map(dto, Task.class);
-    return entity;
+   public Task transformFromDto(TaskDto dto) {
+      Task entity = modelMapper.map(dto, Task.class);
+      return entity;
    }
 
-   public TaskDto transformToDto(Task entity, TaskDto dto) {
-      dto = modelMapper.map(entity, TaskDto.class);
+   public TaskDto transformToDto(Task entity) {
+      TaskDto dto = modelMapper.map(entity, TaskDto.class);
       return dto;
    }
 }

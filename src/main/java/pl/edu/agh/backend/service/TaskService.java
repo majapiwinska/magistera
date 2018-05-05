@@ -26,7 +26,7 @@ public class TaskService {
       TaskDto dto = new TaskDto();
       List<Task> tasks = this.taskRepository.findByProject_Id(id);
       List<TaskDto> dtoList = new LinkedList<>();
-      tasks.forEach(task -> dtoList.add(taskTransformer.transformToDto(task,dto)));
+      tasks.forEach(task -> dtoList.add(taskTransformer.transformToDto(task)));
       return dtoList;
    }
 
@@ -34,15 +34,15 @@ public class TaskService {
       TaskDto dto = new TaskDto();
       List<Task> tasks = this.taskRepository.findByAssignedTo_Username(username);
       List<TaskDto> dtoList = new LinkedList<>();
-      tasks.forEach(task -> dtoList.add(taskTransformer.transformToDto(task,dto)));
+      tasks.forEach(task -> dtoList.add(taskTransformer.transformToDto(task)));
       return dtoList;
    }
 
    public TaskDto save(TaskDto taskDto) {
       Task task = new Task();
-      task = taskTransformer.transformFromDto(task, taskDto);
+      task = taskTransformer.transformFromDto(taskDto);
       task = taskRepository.save(task);
-      return taskTransformer.transformToDto(task, taskDto);
+      return taskTransformer.transformToDto(task);
    }
 }
 

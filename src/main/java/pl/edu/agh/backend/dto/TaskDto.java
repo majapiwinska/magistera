@@ -1,8 +1,5 @@
 package pl.edu.agh.backend.dto;
 
-import pl.edu.agh.backend.struct.Project;
-import pl.edu.agh.backend.struct.Task;
-import pl.edu.agh.backend.struct.User;
 import pl.edu.agh.backend.struct.enums.TaskStatus;
 
 import java.time.ZonedDateTime;
@@ -18,6 +15,7 @@ public class TaskDto {
    private TaskStatus status;
    private int estimatedTime;
    private int progress;
+   private int usedTime;
 
    private UserDto assignedTo;
 
@@ -25,7 +23,7 @@ public class TaskDto {
 
    private TaskDto parentTask;
 
-   private List<TaskDto childrenTasks;
+   private List<TaskDto> childrenTasks;
 
    public TaskDto() {
    }
@@ -124,5 +122,13 @@ public class TaskDto {
 
    public void setChildrenTasks(List<TaskDto> childrenTasks) {
       this.childrenTasks = childrenTasks;
+   }
+
+   public int getUsedTime() {
+      return usedTime;
+   }
+
+   public void setUsedTime(int usedTime) {
+      this.usedTime = usedTime;
    }
 }

@@ -23,6 +23,7 @@ public class Task implements Serializable {
    private TaskStatus status;
    private int estimatedTime;
    private int progress;
+   private int usedTime;
 
    @ManyToOne
    @JoinColumn(name = "user_id")
@@ -150,5 +151,13 @@ public class Task implements Serializable {
 
    public void setChildrenTasks(List<Task> childrenTasks) {
       this.childrenTasks = childrenTasks;
+   }
+
+   public int getUsedTime() {
+      return usedTime;
+   }
+
+   public void setUsedTime(int usedTime) {
+      this.usedTime = usedTime;
    }
 }

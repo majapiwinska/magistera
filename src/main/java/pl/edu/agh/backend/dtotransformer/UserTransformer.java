@@ -16,13 +16,13 @@ public class UserTransformer {
       this.modelMapper = modelMapper;
    }
 
-   public User tranformFromDto(UserDto dto, User entity) {
-      entity = modelMapper.map(dto, User.class);
+   public User tranformFromDto(UserDto dto) {
+      User entity = modelMapper.map(dto, User.class);
       return entity;
    }
 
-   public UserDto transformToDto(User entity, UserDto dto) {
-      dto = modelMapper.map(entity, UserDto.class);
+   public UserDto transformToDto(User entity) {
+      UserDto dto = modelMapper.map(entity, UserDto.class);
       return dto;
    }
 
