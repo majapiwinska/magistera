@@ -13,17 +13,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class UserService{
+public class UserService {
 
    private final UserRepository userRepository;
-   private final UserTransformer userTransformer;
+   private UserTransformer userTransformer = new UserTransformer();
 
    private final RoleRepository roleRepository;
 
    @Autowired
-   UserService(UserRepository userRepository, UserTransformer userTransformer, RoleRepository roleRepository) {
+   UserService(UserRepository userRepository, RoleRepository roleRepository) {
       this.userRepository = userRepository;
-      this.userTransformer = userTransformer;
       this.roleRepository = roleRepository;
 
    }
@@ -42,12 +41,12 @@ public class UserService{
    }
 
    public UserDto login(LoginUser loginUser) {
-      User user = this.userRepository.findOneByUsername(loginUser.getUsername());
-      UserDto dto = new UserDto();
-      if(user != null){
-       dto = userTransformer.transformToDto(user);
-      }
-      return dto;
+      User user = this.userRepository
+            .findByUsernameEqualsAndPasswordEquals(loginUser.getUsername(), loginUser.getPassword());
+      if (user != null) {
+         return userTransformer.transformToDto(user);
+      } else
+         return null;
    }
 
    public UserDto save(UserDto dto) {
@@ -56,4 +55,5 @@ public class UserService{
       return userTransformer.transformToDto(this.userRepository.save(user));
 
    }
+
 }

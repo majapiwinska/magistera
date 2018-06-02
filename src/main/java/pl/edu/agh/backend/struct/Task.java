@@ -30,8 +30,8 @@ public class Task implements Serializable {
    private User assignedTo;
 
    @ManyToOne
-   @JoinColumn(name = "project_id")
-   private Project project;
+   @JoinColumn(name = "subproject_id")
+   private Subproject subproject;
 
    @ManyToOne
    private Task parentTask;
@@ -40,21 +40,6 @@ public class Task implements Serializable {
    private List<Task> childrenTasks = new LinkedList<>();
 
    public Task() {
-   }
-
-   public Task(String name, String description, ZonedDateTime startDate, ZonedDateTime endDate, TaskStatus status,
-         int estimatedTime, int progress, User assignedTo, Project project, Task parentTask, List<Task> childrenTasks) {
-      this.name = name;
-      this.description = description;
-      this.startDate = startDate;
-      this.endDate = endDate;
-      this.status = status;
-      this.estimatedTime = estimatedTime;
-      this.progress = progress;
-      this.assignedTo = assignedTo;
-      this.project = project;
-      this.parentTask = parentTask;
-      this.childrenTasks = childrenTasks;
    }
 
    public Long getId() {
@@ -129,14 +114,6 @@ public class Task implements Serializable {
       this.assignedTo = assignedTo;
    }
 
-   public Project getProject() {
-      return project;
-   }
-
-   public void setProject(Project project) {
-      this.project = project;
-   }
-
    public Task getParentTask() {
       return parentTask;
    }
@@ -159,5 +136,13 @@ public class Task implements Serializable {
 
    public void setUsedTime(int usedTime) {
       this.usedTime = usedTime;
+   }
+
+   public Subproject getSubproject() {
+      return subproject;
+   }
+
+   public void setSubproject(Subproject subproject) {
+      this.subproject = subproject;
    }
 }

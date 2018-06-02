@@ -17,13 +17,9 @@ public class TaskDto {
    private int progress;
    private int usedTime;
 
-   private UserDto assignedTo;
+   private Long userId;
 
-   private ProjectDto project;
-
-   private TaskDto parentTask;
-
-   private List<TaskDto> childrenTasks;
+   private Long subprojectId;
 
    public TaskDto() {
    }
@@ -92,43 +88,27 @@ public class TaskDto {
       this.progress = progress;
    }
 
-   public UserDto getAssignedTo() {
-      return assignedTo;
-   }
-
-   public void setAssignedTo(UserDto assignedTo) {
-      this.assignedTo = assignedTo;
-   }
-
-   public ProjectDto getProject() {
-      return project;
-   }
-
-   public void setProject(ProjectDto project) {
-      this.project = project;
-   }
-
-   public TaskDto getParentTask() {
-      return parentTask;
-   }
-
-   public void setParentTask(TaskDto parentTask) {
-      this.parentTask = parentTask;
-   }
-
-   public List<TaskDto> getChildrenTasks() {
-      return childrenTasks;
-   }
-
-   public void setChildrenTasks(List<TaskDto> childrenTasks) {
-      this.childrenTasks = childrenTasks;
-   }
-
    public int getUsedTime() {
       return usedTime;
    }
 
    public void setUsedTime(int usedTime) {
       this.usedTime = usedTime;
+   }
+
+   public Long getUserId() {
+      return userId;
+   }
+
+   public void setUserId(Long userId) {
+      this.userId = userId;
+   }
+
+   public Long getSubprojectId() {
+      return subprojectId;
+   }
+
+   public void setSubprojectId(Long subprojectId) {
+      this.subprojectId = subprojectId;
    }
 }

@@ -6,19 +6,30 @@ import org.springframework.stereotype.Service;
 import pl.edu.agh.backend.dto.TaskDto;
 import pl.edu.agh.backend.struct.Task;
 
-@Service
-public class TaskTransformer {
+import java.util.LinkedList;
+import java.util.List;
 
-   @Autowired
-   ModelMapper modelMapper;
+public class TaskTransformer {
+   public TaskTransformer() {
+   }
 
    public Task transformFromDto(TaskDto dto) {
-      Task entity = modelMapper.map(dto, Task.class);
+     Task entity = new Task();
+     if(dto.getId() != null){
+        entity.setId(dto.getId());
+     }
+     entity.setName(dto.getName());
+     entity.setDescription(dto.getDescription());
+     entity.setStartDate(dto.getStartDate());
+     entity.setEndDate(dto.getEndDate());
+     entity.setStatus(dto.getStatus());
+     entity.setEstimatedTime(dto.getEstimatedTime());
+     entity.setProgress(dto.getProgress());
+     entity.setUsedTime(dto.getUsedTime());
       return entity;
    }
 
    public TaskDto transformToDto(Task entity) {
-      TaskDto dto = modelMapper.map(entity, TaskDto.class);
-      return dto;
+      return null;
    }
 }

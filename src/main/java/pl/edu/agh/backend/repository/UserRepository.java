@@ -7,5 +7,7 @@ import pl.edu.agh.backend.struct.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-   public User findOneByUsername(String username);
+   User findOneByUsername(String username);
+
+   User findByUsernameEqualsAndPasswordEquals(String username, String password);
 }

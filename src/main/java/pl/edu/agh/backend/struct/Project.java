@@ -2,10 +2,8 @@ package pl.edu.agh.backend.struct;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Project implements Serializable {
@@ -23,24 +21,15 @@ public class Project implements Serializable {
    private List<User> users = new LinkedList<>();
 
    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-   private Set<Task> tasks = new HashSet<>();
-
-   @ManyToOne
-   private Project parentProject;
-
-   @OneToMany(mappedBy = "parentProject")
-   private List<Project> subProjets = new LinkedList<>();
-
+   private List<Subproject> subprojects = new LinkedList<>();
 
    public Project() {
    }
 
-   public Project(String name, String description, User owner, List<User> users, Set<Task> tasks) {
+   public Project(String name, String description, User owner) {
       this.name = name;
       this.description = description;
       this.owner = owner;
-      this.users = users;
-      this.tasks = tasks;
    }
 
    public Long getId() {
@@ -83,27 +72,13 @@ public class Project implements Serializable {
       this.users = users;
    }
 
-   public Set<Task> getTasks() {
-      return tasks;
+   public List<Subproject> getSubprojects() {
+      return subprojects;
    }
 
-   public void setTasks(Set<Task> tasks) {
-      this.tasks = tasks;
+   public void setSubprojects(List<Subproject> subprojects) {
+      this.subprojects = subprojects;
    }
 
-   public Project getParentProject() {
-      return parentProject;
-   }
 
-   public void setParentProject(Project parentProject) {
-      this.parentProject = parentProject;
-   }
-
-   public List<Project> getSubProjets() {
-      return subProjets;
-   }
-
-   public void setSubProjets(List<Project> subProjets) {
-      this.subProjets = subProjets;
-   }
 }

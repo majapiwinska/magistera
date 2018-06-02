@@ -18,10 +18,10 @@ public class TaskController {
       this.taskService = taskService;
    }
 
-   @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
+  /* @RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
    public List<TaskDto> getProjectTaksList(@PathVariable Long id){
       return taskService.getProjectTaskList(id);
-   }
+   }*/
 
    //TODO: pobierać po id, nie po username
    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)

@@ -19,14 +19,8 @@ public class UserController {
    private final UserService userService;
 
    @Autowired
-   UserController(UserService userService){
+   UserController(UserService userService) {
       this.userService = userService;
-
-   }
-
-   @RequestMapping(value = "/login", method = RequestMethod.POST)
-   public UserDto login(@RequestBody LoginUser loginUser){
-     return userService.login(loginUser);
 
    }
 
@@ -35,20 +29,21 @@ public class UserController {
       return userService.getAllUsers();
    }
 
-
-
    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
    public UserDto user(@PathVariable String username) {
 
       return userService.findByUsername(username);
    }
 
-
-   @RequestMapping(value="/signup", method = RequestMethod.POST)
-   public UserDto saveUser(@RequestBody UserDto user){
+   @RequestMapping(value = "/signup", method = RequestMethod.POST)
+   public UserDto saveUser(@RequestBody UserDto user) {
       return userService.save(user);
 
    }
 
+   @RequestMapping(value = "/login", method = RequestMethod.POST)
+   public UserDto login(@RequestBody LoginUser loginUser) {
+     return userService.login(loginUser);
+   }
 
 }

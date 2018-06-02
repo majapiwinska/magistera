@@ -1,9 +1,6 @@
 package pl.edu.agh.backend.dto;
 
-import pl.edu.agh.backend.struct.Project;
 import pl.edu.agh.backend.struct.Role;
-import pl.edu.agh.backend.struct.Task;
-import pl.edu.agh.backend.struct.enums.UserRole;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -19,10 +16,8 @@ public class UserDto {
    private String email;
    private int active;
    private String password;
-   private List<Task> usersTasks = new LinkedList<>();
 
    private Set<Role> roles = new HashSet<>();
-   private Set<Project> userProjects = new HashSet<>();
 
    public UserDto() {
    }
@@ -74,21 +69,6 @@ public class UserDto {
       this.email = email;
    }
 
-   public List<Task> getUsersTasks() {
-      return usersTasks;
-   }
-
-   public void setUsersTasks(List<Task> usersTasks) {
-      this.usersTasks = usersTasks;
-   }
-
-   public Set<Project> getUserProjects() {
-      return userProjects;
-   }
-
-   public void setUserProjects(Set<Project> userProjects) {
-      this.userProjects = userProjects;
-   }
 
    public Set<Role> getRoles() {
       return roles;

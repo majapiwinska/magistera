@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-   List<Task> findByProject_Id(Long id);
+   List<Task> findBySubproject_Id(Long id);
 
    List<Task> findByAssignedTo_Username(String username);
 }

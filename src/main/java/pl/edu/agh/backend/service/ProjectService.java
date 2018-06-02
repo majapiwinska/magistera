@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.edu.agh.backend.dto.ProjectDto;
 import pl.edu.agh.backend.dtotransformer.ProjectTransformer;
 import pl.edu.agh.backend.repository.ProjectRepository;
+import pl.edu.agh.backend.repository.UserRepository;
 import pl.edu.agh.backend.struct.Project;
 
 import java.util.LinkedList;
@@ -13,13 +14,14 @@ import java.util.List;
 @Service
 public class ProjectService {
 
-   private final ProjectTransformer projectTransformer;
+   private ProjectTransformer projectTransformer = new ProjectTransformer();
    private final ProjectRepository projectRepository;
+   private final UserRepository userRepository;
 
    @Autowired
-   public  ProjectService(ProjectTransformer projectTransformer,ProjectRepository projectRepository ){
+   public ProjectService(ProjectRepository projectRepository, UserRepository userRepository) {
       this.projectRepository = projectRepository;
-      this.projectTransformer = projectTransformer;
+      this.userRepository = userRepository;
    }
 
    public List<ProjectDto> getAllProjects() {
@@ -32,9 +34,11 @@ public class ProjectService {
       return projectDtos;
    }
 
-   public ProjectDto save(ProjectDto projectDto){
-      Project project = new Project();
-      project = projectRepository.save(projectTransformer.transformFromDto(projectDto));
+   public ProjectDto save(ProjectDto projectDto) {
+      Project project = projectTransformer.transformFromDto(projectDto);
+      project.setOwner(userRepository.findById(projectDto.getOwner().getId()).get());
+      project = projectTransformer.transformFromDto(projectDto);
+      project = projectRepository.save(project);
       return projectTransformer.transformToDto(project);
    }
 
